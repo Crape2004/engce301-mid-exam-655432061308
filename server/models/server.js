@@ -17,9 +17,9 @@ class Server {
       this.key = "server.key";
       this.cert = "server.crt";
     }
-    else{
+    else if (process.env.NODE_ENV == "production"){
       this.key = "/etc/ssl/server.key";
-      this.cert = "/etc/ssl/server.crt";
+      this.cert = "/etc/ssl/server.crt"; 
     }
 
     // Load SSL Certificates
@@ -30,7 +30,7 @@ class Server {
 
     this.app = express();
     this.port = process.env.PORT || 8080; // HTTP port
-    this.httpsPort = process.env.HTTPS_PORT || 8081; // HTTPS port
+    this.httpsPort = process.env.HTTPS_PORT || 8030; // HTTPS port
     this.sslOptions = sslOptions;
 
     this.paths = {
